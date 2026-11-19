@@ -53,7 +53,9 @@ fbq('init','2013061436318808');fbq('track','PageView');fbq('trackCustom','LPView
 <script>(function(){var V=document.body.getAttribute('data-variant');
 function go(ev){var a=ev.currentTarget,h=a.getAttribute('href');
  try{var c=a.getAttribute('data-join');window.fbq&&(fbq('track','Lead',{content_name:c,variant:V}),fbq('trackCustom','JoinTap',{channel:c,variant:V}))}catch(e){}
- if(!h||ev.metaKey||ev.ctrlKey)return;ev.preventDefault();setTimeout(function(){location.href=h},350)}
+ if(!h||ev.metaKey||ev.ctrlKey)return;ev.preventDefault();var app=a.getAttribute('data-app');
+ setTimeout(function(){if(!app){location.href=h;return}location.href=app;
+  setTimeout(function(){if(!document.hidden)location.href=h},1500)},350)}   // app first, t.me page if the app did not open
 [].forEach.call(document.querySelectorAll('[data-join]'),function(a){a.addEventListener('click',go)});
 })();</script>
 </body></html>
